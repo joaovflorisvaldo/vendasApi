@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>vendasAPI</artifactId>
+    <artifactId>vendasApi</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>vendasAPI</name>
+    <name>vendasApi</name>
     <packaging>war</packaging>
 
     <properties>
