@@ -25,6 +25,10 @@ public class VendaService {
         return vendaOptional.orElse(null);
     }
 
+    public List<Venda> relatorioVenda(){
+        return vendaRepository.relatorioVenda();
+    }
+
     public Venda atualizarVenda(Integer id, Venda vendaAtualizada) {
         Optional<Venda> vendaOptional = vendaRepository.listarPorId(id);
         if (vendaOptional.isPresent()) {

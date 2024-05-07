@@ -15,8 +15,9 @@ public class Cliente {
     @Column(length = 60)
     private String nome;
 
-
     @Column(length = 20)
     private String telefone;
 
+    @Column(length = 20)
+    private String aniversario;
 }

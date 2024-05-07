@@ -35,4 +35,10 @@ public class VendaRepository {
     public void deletarVenda(Venda venda) {
         entityManager.remove(entityManager.contains(venda) ? venda : entityManager.merge(venda));
     }
+
+    public List<Venda> relatorioVenda(){
+
+        return entityManager.createQuery("SELECT v FROM Venda v", Venda.class).getResultList();
+    }
+
 }

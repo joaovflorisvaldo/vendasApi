@@ -63,4 +63,16 @@ public class VendaController {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
+
+    @GET
+    @Path("/relatorio-vendas")
+    public Response relatorioVenda() {
+        return Response.ok(vendaService.relatorioVenda()).build();
+    }
+
+    @GET
+    @Path("/relatorio-vendasasiuhd")
+    public Response relatorioVendasd() {
+        return Response.ok(vendaService.relatorioVenda()).build();
+    }
 }

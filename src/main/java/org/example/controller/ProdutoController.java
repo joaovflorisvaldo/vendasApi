@@ -9,7 +9,7 @@ import org.example.service.ProdutoService;
 
 import java.util.List;
 
-@Path("/estante")
+@Path("/produto")
 public class ProdutoController {
     @Inject
     private ProdutoService produtoService;
@@ -39,8 +39,12 @@ public class ProdutoController {
     @POST
     @Consumes(value = MediaType.APPLICATION_JSON)
     public Response criarProduto(Produto produto) {
-        produtoService.salvar(produto);
-        return Response.status(Response.Status.CREATED).build();
+        try {
+            produtoService.salvar(produto);
+            return Response.status(201).entity("Produto criado com sucesso").build();
+        }catch (Exception e){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 
     // Atualizar um produto existente
