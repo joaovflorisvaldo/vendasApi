@@ -36,9 +36,26 @@ public class VendaRepository {
         entityManager.remove(entityManager.contains(venda) ? venda : entityManager.merge(venda));
     }
 
-    public List<Venda> relatorioVenda(){
+    public List<Venda> relatorioVenda() {
+        List<Venda> result = entityManager.createQuery(
+                        "SELECT v, c.id, SUM(v.total), c.nome " +
+                                "FROM Venda v " +
+                                "JOIN v.cliente c " +
+                                "GROUP BY v, c.id, c.nome", Venda.class).getResultList();
 
-        return entityManager.createQuery("SELECT v FROM Venda v", Venda.class).getResultList();
+        return result;
     }
+
+    public List<Venda> relatorioCliente(){
+        List<Venda> result = entityManager.createQuery(
+                "SELECT c.id, c.nome, COUNT(v) " +
+                        "FROM Venda v " +
+                        "JOIN v.cliente c " +
+                        "GROUP BY c.id, c.nome", Venda.class)
+                .getResultList();
+
+        return result;
+    }
+
 
 }

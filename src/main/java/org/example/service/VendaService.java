@@ -25,8 +25,12 @@ public class VendaService {
         return vendaOptional.orElse(null);
     }
 
-    public List<Venda> relatorioVenda(){
+    public List<Venda> relatorioVenda() {
         return vendaRepository.relatorioVenda();
+    }
+
+    public List<Venda> relatorioCliente(){
+        return vendaRepository.relatorioCliente();
     }
 
     public Venda atualizarVenda(Integer id, Venda vendaAtualizada) {

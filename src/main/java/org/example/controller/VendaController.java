@@ -71,8 +71,8 @@ public class VendaController {
     }
 
     @GET
-    @Path("/relatorio-vendasasiuhd")
-    public Response relatorioVendasd() {
-        return Response.ok(vendaService.relatorioVenda()).build();
+    @Path("/relatorio-cliente")
+    public Response relatorioCliente() {
+        return Response.ok(vendaService.relatorioCliente()).build();
     }
 }
