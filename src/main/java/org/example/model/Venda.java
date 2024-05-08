@@ -27,7 +27,7 @@ public class Venda {
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "venda", orphanRemoval = true)
+    @OneToMany(mappedBy = "venda", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ItensVenda> listaItens;
 
 }

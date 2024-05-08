@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.model.Venda;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,24 +38,21 @@ public class VendaRepository {
     }
 
     public List<Venda> relatorioVenda() {
-        List<Venda> result = entityManager.createQuery(
-                        "SELECT v, c.id, SUM(v.total), c.nome " +
-                                "FROM Venda v " +
-                                "JOIN v.cliente c " +
-                                "GROUP BY v, c.id, c.nome", Venda.class).getResultList();
+            String jpql =
+                    "SELECT c.nome, count(v.cliente.id), sum(v.total) FROM Venda v inner join Cliente c ON c.id = v.cliente.id group by c.nome";
 
-        return result;
+            List<Venda> quantidadeDTOList = entityManager.createQuery(jpql).getResultList();
+
+            return quantidadeDTOList;
     }
 
     public List<Venda> relatorioCliente(){
-        List<Venda> result = entityManager.createQuery(
-                "SELECT c.id, c.nome, COUNT(v) " +
-                        "FROM Venda v " +
-                        "JOIN v.cliente c " +
-                        "GROUP BY c.id, c.nome", Venda.class)
-                .getResultList();
+        String jpql =
+                "SELECT c.id, c.nome, COUNT(v) FROM Venda v JOIN v.cliente c GROUP BY c.id, c.nome";
 
-        return result;
+        List<Venda> quantidadeDTOList = entityManager.createQuery(jpql).getResultList();
+
+        return quantidadeDTOList;
     }
 
 
